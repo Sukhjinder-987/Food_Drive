@@ -78,24 +78,6 @@ def exploratory_data_analysis():
     #st.pyplot(fig)
 
 
-    # Average Bags/Route per Ward
-    ward_mean_data = filtered_data.groupby(by='COMBINED STAKES')['Bags/Route'].mean().sort_values()
-    ward_mean = px.bar(orientation='h', y=ward_mean_data.index, x=ward_mean_data.values,
-                      labels={'y':'COMBINED STAKES','x':'Average Donation Bags Collected per Route'},
-                      title='Average Donation Bags Collected per Route in each Ward/Branch',
-                      height=ward_chart_height
-                      )
-    st.plotly_chart(ward_mean)
-
-    # Total Bags/Ward
-    ward_total_data = filtered_data.groupby(by='COMBINED STAKES')['Donation Bags Collected for the year 2024'].sum().sort_values()
-    ward_total = px.bar(orientation='h', y=ward_total_data.index, x=ward_total_data.values,
-                      labels={'y':'COMBINED STAKES','x':'Total Donation Bags Collected'},
-                      title='Total Donation Bags Collected in each Ward/Branch',
-                      height=ward_chart_height
-                      )
-    st.plotly_chart(ward_total)
-
 # Page 3: Machine Learning Modeling
 def machine_learning_modeling():
     stake_encoding = {'Edmonton North Stake' : 0,'Gateway Stake' : 1,'Riverbend Stake' : 2,'Bonnie Doon Stake' : 3,'YSA Stake' : 4}
