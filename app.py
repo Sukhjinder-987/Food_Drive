@@ -83,7 +83,6 @@ def exploratory_data_analysis():
                 autopct='%1.1f%%',
                 startangle=90,
                 title='Percentage Distribution of Bags Collected by Region')
-    px.axis('equal')
     st.plotly_chart(fig)
 
 # Page 3: Machine Learning Modeling
