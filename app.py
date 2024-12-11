@@ -77,13 +77,24 @@ def exploratory_data_analysis():
     # Display the chart in Streamlit
     #st.pyplot(fig)
 
-# Create the pie chart
-    fig = px.pie(filtered_data, values='Donation Bags Collected for the year 2024',
-                names='Stake for year 2024',
-                autopct='%1.1f%%',
-                startangle=90,
-                title='Percentage Distribution of Bags Collected by Region')
-    st.plotly_chart(fig)
+
+    # Average Bags/Route per Ward
+    ward_mean_data = filtered_data.groupby(by='COMBINED STAKES')['Bags/Route'].mean().sort_values()
+    ward_mean = px.bar(orientation='h', y=ward_mean_data.index, x=ward_mean_data.values,
+                      labels={'y':'COMBINED STAKES','x':'Average Donation Bags Collected per Route'},
+                      title='Average Donation Bags Collected per Route in each Ward/Branch',
+                      height=ward_chart_height
+                      )
+    st.plotly_chart(ward_mean)
+
+    # Total Bags/Ward
+    ward_total_data = filtered_data.groupby(by='COMBINED STAKES')['Donation Bags Collected for the year 2024'].sum().sort_values()
+    ward_total = px.bar(orientation='h', y=ward_total_data.index, x=ward_total_data.values,
+                      labels={'y':'COMBINED STAKES','x':'Total Donation Bags Collected'},
+                      title='Total Donation Bags Collected in each Ward/Branch',
+                      height=ward_chart_height
+                      )
+    st.plotly_chart(ward_total)
 
 # Page 3: Machine Learning Modeling
 def machine_learning_modeling():
