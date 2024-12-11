@@ -95,7 +95,6 @@ def machine_learning_modeling():
     adult_volunteers = st.slider("Number of Adult Volunteers", 1, 50, 10)
     doors_in_route = st.slider("Number of Doors in Route", 10, 500, 100)
     youth_volunteers = st.slider("Number of Youth Volunteers", 1, 50, 10)
-    comment_sentiments = st.slider("Comment Sentiments", 0, 2, 1)
 
     # Cols to calc
     donation_bags_collected = data.loc[data['COMBINED STAKES'] == ward_branch,'Donation Bags Collected for the year 2024'].mean()
