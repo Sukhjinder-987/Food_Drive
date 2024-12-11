@@ -76,17 +76,15 @@ def exploratory_data_analysis():
 
     # Display the chart in Streamlit
     #st.pyplot(fig)
-    stake_bags = data_cleaned.groupby('Stake for year 2024')['Donation Bags Collected for the year 2024'].sum().reset_index()
 
 # Create the pie chart
-    fig = px.pie(stake_bags, 
-                values='Donation Bags Collected for the year 2024', 
-                names='Stake for year 2024', 
-                autopct='%1.1f%%', 
-                startangle=90, 
+    fig = px.pie(filtered_data, values='Donation Bags Collected for the year 2024',
+                names='Stake for year 2024',
+                autopct='%1.1f%%',
+                startangle=90,
                 title='Percentage Distribution of Bags Collected by Region')
     px.axis('equal')
-
+    st.plotly_chart(fig)
 
 # Page 3: Machine Learning Modeling
 def machine_learning_modeling():
