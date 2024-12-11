@@ -71,11 +71,21 @@ def exploratory_data_analysis():
     if len(filtered_data.groupby(by='COMBINED STAKES')) <= 14: ward_chart_height = 450
 
     # Create the pie chart
-    fig = px.pie(data_cleaned['Donation Bags Collected for the year 2024'], labels=data_cleaned['Stake for year 2024'], autopct='%1.1f%%', startangle=90, title='Percentage Distribution of Bags Collected by Region')
-    px.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    #fig = px.pie(data_cleaned['Donation Bags Collected for the year 2024'], labels=data_cleaned['Stake for year 2024'], autopct='%1.1f%%', startangle=90, title='Percentage Distribution of Bags Collected by Region')
+    #px.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
     # Display the chart in Streamlit
-    st.pyplot(fig)
+    #st.pyplot(fig)
+    stake_bags = data_cleaned.groupby('Stake for year 2024')['Donation Bags Collected for the year 2024'].sum().reset_index()
+
+# Create the pie chart
+    fig = px.pie(stake_bags, 
+                values='Donation Bags Collected for the year 2024', 
+                names='Stake for year 2024', 
+                autopct='%1.1f%%', 
+                startangle=90, 
+                title='Percentage Distribution of Bags Collected by Region')
+    px.axis('equal')
 
 
 # Page 3: Machine Learning Modeling
