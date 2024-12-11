@@ -96,13 +96,6 @@ def machine_learning_modeling():
     doors_in_route = st.slider("Number of Doors in Route", 10, 500, 100)
     youth_volunteers = st.slider("Number of Youth Volunteers", 1, 50, 10)
 
-    # Cols to calc
-    donation_bags_collected = data.loc[data['COMBINED STAKES'] == ward_branch,'Donation Bags Collected for the year 2024'].mean()
-    bags_per_door = int(donation_bags_collected)/int(doors_in_route)
-    bags_per_route = int(donation_bags_collected)/int(routes_completed)
-    total_volunteers = int(adult_volunteers) + int(youth_volunteers)
-
-    stake_num = int(stake_encoding[stake])
 
     # Predict button
     if st.button("Predict"):
@@ -110,7 +103,7 @@ def machine_learning_modeling():
         model = joblib.load('random_forest_classifier_model.pkl')
 
         # Prepare input data for prediction
-        input_data = [[completed_routes, routes_completed, time_spent, adult_volunteers, doors_in_route, youth_volunteers]]
+        input_data = [[completed_routes, routes_completed, donation_bags_collected , time_spent, adult_volunteers, doors_in_route, youth_volunteers]]
 
         # Make prediction
         prediction = model.predict(input_data)
