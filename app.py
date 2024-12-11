@@ -110,7 +110,7 @@ def machine_learning_modeling():
         model = joblib.load('random_forest_classifier_model.pkl')
 
         # Prepare input data for prediction
-        input_data = [[completed_routes, routes_completed, time_spent, adult_volunteers, doors_in_route, youth_volunteers, comment_sentiments]]
+        input_data = [[completed_routes, routes_completed, time_spent, adult_volunteers, doors_in_route, youth_volunteers]]
 
         # Make prediction
         prediction = model.predict(input_data)
